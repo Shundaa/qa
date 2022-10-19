@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - ~/apps/mysql:/var/lib/mysql
+    env_file: docker.env
+  empresa-h2:
+    build:
+      context: .
+      dockerfile: Dockerfile-h2
+    image: empresa-h2:v1
+    restart: always
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+  empresa-mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    image: empresa-mysql:v1
+    restart: always
+    ports:
+      - 8081:8081
+    expose:
+      - 8081
