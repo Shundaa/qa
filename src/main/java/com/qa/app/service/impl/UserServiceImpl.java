@@ -31,6 +31,7 @@ import static java.lang.Boolean.TRUE;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final UserRepository userRepository;
     private final ObjectMapper objectMapper;
     private final PasswordEncoder passwordEncoder;
     private final ClassRegistrationRepository classRegistrationRepository;
@@ -38,20 +39,19 @@ public class UserServiceImpl implements UserService {
     private final LessonRepository lessonRepository;
     private final ChapterRepository chapterRepository;
     private final QuizRepository quizRepository;
-    private final UserRepository userRepository;
-
-    @Override
-    public List<User> getAllUsers() {
-        List<User> userList = userRepository.findAll();
-        userList.forEach(a -> a.setPassword(a.getPassword()));
-        return userList;
-    }
 
     @Override
     public UserDao getUser(Long id) {
         User user = userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("User with id: " + id + " Not Found"));
         return ObjectMapperUtils.map(user, UserDao.class);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        List<User> userList = userRepository.findAll();
+        userList.forEach(a -> a.setPassword(a.getPassword()));
+        return userList;
     }
 
     @Override

@@ -21,6 +21,12 @@ public class UserController {
 
     private final UserService userService;
 
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<UserDao> getUser(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUser(id));
+    }
+
     @GetMapping("/all")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -38,12 +44,6 @@ public class UserController {
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<List<ClassRegistrationResponse>> getAllCoursesOfUser(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getAllCoursesOfUser(id));
-    }
-
-    @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<UserDao> getUser(@PathVariable Long id) {
-        return ResponseEntity.ok(userService.getUser(id));
     }
 
     @DeleteMapping("/{id}")

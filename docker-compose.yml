@@ -8,16 +8,6 @@ services:
     volumes:
       - ~/apps/mysql:/var/lib/mysql
     env_file: docker.env
-  empresa-h2:
-    build:
-      context: .
-      dockerfile: Dockerfile-h2
-    image: empresa-h2:v1
-    restart: always
-    ports:
-      - 8080:8080
-    expose:
-      - 8080
   empresa-mysql:
     build:
       context: .
