@@ -1,5 +1,5 @@
 # our final base image
-FROM openjdk:21-jre-alpine
+FROM eclipse-temurin:21
 
 # set deployment directory
 VOLUME /tmp
