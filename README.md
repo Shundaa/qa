@@ -29,7 +29,8 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-c
 
 ## Compilar o Projeto
 
-Agora o fazer um clone do projeto:
+Agora clone o projeto:
+
 git clone https://github.com/Shundaa/qa.git
 
 ### Acessar o projeto
